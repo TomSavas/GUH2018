@@ -32,6 +32,9 @@ public class ScreenBorderCreator: MonoBehaviour
 		var gameObject = new GameObject(name);
 		gameObject.tag = "Border";
 		gameObject.transform.parent = transform;
+		var rigidBody = gameObject.AddComponent<Rigidbody2D> ();
+		rigidBody.gravityScale = 0;
+		rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
 		return gameObject;
 	}
 
