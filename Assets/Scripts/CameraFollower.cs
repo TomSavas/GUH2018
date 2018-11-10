@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class CameraFollower : MonoBehaviour {
 	public float speed;
-	private bool changingSpeed;
+	private bool changingSpeed = false;
 	public float acceleration;
-	// Use this for initialization
-	void Start () {
-		changingSpeed = false;
-	}
-	
-	// Update is called once per frame
+
 	private void FixedUpdate () {
 		transform.position += new Vector3 (0, Time.deltaTime * speed);
-		if (transform.position.y > 50) {
-			SetSpeed (-10);
-		} else if (transform.position.y < 0) {
-			SetSpeed (10);
-		}
 	}
+
 	public void SetSpeed(float newSpeed)
 	{
 		if (!changingSpeed) {
@@ -27,6 +18,7 @@ public class CameraFollower : MonoBehaviour {
 			changingSpeed = true;
 		}
 	}
+
 	public IEnumerator SmoothMove(float newSpeed)
 	{
 		bool isNewSpeedHigher = newSpeed > speed;
