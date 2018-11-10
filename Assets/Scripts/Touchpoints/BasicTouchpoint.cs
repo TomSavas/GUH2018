@@ -3,7 +3,8 @@
 public abstract class BasicTouchpoint : MonoBehaviour
 {
 	public float Lifetime;
-	public float Range;
+	public float MaxRange;
+	public float MinRange;
 
 	private void Update ()
 	{
@@ -34,8 +35,10 @@ public abstract class BasicTouchpoint : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
+		Gizmos.color = Color.black;
+		Gizmos.DrawWireSphere(transform.position, MinRange);
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, Range);
+		Gizmos.DrawWireSphere(transform.position, MaxRange);
 	}
 
 	public virtual float CalculateLifetime(float lifetime)
