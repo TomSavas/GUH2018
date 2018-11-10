@@ -16,7 +16,7 @@ public class ScreenBorderCreator: MonoBehaviour
 		ApplyColliderToGameObject(CreateWallObject("Bottom_Border"),
 			Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0.0f)),
 			Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0.0f))
-		);
+		).gameObject.AddComponent<DeathBorder>();
 		ApplyColliderToGameObject(CreateWallObject("Left_Border"),
 			Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0.0f)),
 			Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0.0f))
@@ -35,7 +35,7 @@ public class ScreenBorderCreator: MonoBehaviour
 		return gameObject;
 	}
 
-	private void ApplyColliderToGameObject(GameObject gameObject, Vector3 startOfBoundary, Vector3 endOfBoundary)
+	private BoxCollider2D ApplyColliderToGameObject(GameObject gameObject, Vector3 startOfBoundary, Vector3 endOfBoundary)
 	{
 		var collider = gameObject.AddComponent<BoxCollider2D>();
 		collider.offset = ToVector2((startOfBoundary + endOfBoundary) / 2);
@@ -50,6 +50,8 @@ public class ScreenBorderCreator: MonoBehaviour
 			collider.size += new Vector2(ToVector2(Abs(startOfBoundary) + Abs(endOfBoundary)).x, 1f);
 			collider.offset += new Vector2(0f, collider.size.y / 2 * Mathf.Sign(collider.offset.y));
 		}
+
+		return collider;
 	}
 
 	private Vector2 ToVector2(Vector3 vector3)
