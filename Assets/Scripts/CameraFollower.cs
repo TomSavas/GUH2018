@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollower : MonoBehaviour {
+public class CameraFollower : MonoBehaviour
+{
+	public bool enabled;
 	public float speed;
 	private bool changingSpeed = false;
 	public float acceleration;
 
 	private void FixedUpdate () {
-		transform.position += new Vector3 (0, Time.deltaTime * speed);
+		if(enabled)
+            transform.position += new Vector3 (0, Time.deltaTime * speed);
 	}
 
 	public void SetSpeed(float newSpeed)
