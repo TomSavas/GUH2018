@@ -13,7 +13,7 @@ public class ScreenBorderCreator: MonoBehaviour
 			Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0.0f)),
 			Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0.0f))
 		);
-		ApplyColliderToGameObject(CreateWallObject("Bottom_Border)"),
+		ApplyColliderToGameObject(CreateWallObject("Bottom_Border"),
 			Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0.0f)),
 			Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0.0f))
 		);
@@ -21,7 +21,7 @@ public class ScreenBorderCreator: MonoBehaviour
 			Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0.0f)),
 			Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0.0f))
 		);
-		ApplyColliderToGameObject(CreateWallObject("Right_Border)"),
+		ApplyColliderToGameObject(CreateWallObject("Right_Border"),
 			Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0.0f)),
 			Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0.0f))
 		);
