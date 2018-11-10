@@ -30,6 +30,7 @@ public class ScreenBorderCreator: MonoBehaviour
 	private GameObject CreateWallObject(string name)
 	{
 		var gameObject = new GameObject(name);
+		gameObject.tag = "Border";
 		gameObject.transform.parent = transform;
 		return gameObject;
 	}
