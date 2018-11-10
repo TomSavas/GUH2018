@@ -8,6 +8,7 @@ public class SpawnPickUps : MonoBehaviour {
 	public int spawnsPerMinute;
 	public GameObject pickUp;
 	private bool spawnedYet = false;
+	public GameObject camera;
 
 	void Update(){
 		int time = (Mathf.RoundToInt(Time.time)) % (60/spawnsPerMinute);
@@ -23,7 +24,9 @@ public class SpawnPickUps : MonoBehaviour {
 		}
 	}
 	Vector3 generateNewPosition(){
-		return new Vector3 (0, 0, 0);
+		float y = Random.Range (camera.transform.position.y - 4.5f, camera.transform.position.y + 4.5f);
+		float x = Random.Range (-3.5f, 3.5f);
+		return new Vector3 (x, y, 0);
 	}
 
 }
