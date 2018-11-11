@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerBehavior : MonoBehaviour
 {
@@ -10,12 +11,16 @@ public class PlayerBehavior : MonoBehaviour
 	public GameObject BulletPrefab;
 	public float BulletSpeed;
 	public float FiringCooldownTime;
+	public Vector2 ShootingPosition;
 	
 	private bool _invulnerable;
 	private float _invulnerabilityTime;
 	private SpriteRenderer _spriteRenderer;
 	private bool _onCooldown;
 	private float _cooldownTime;
+	private float _blinkHoldback;
+	private bool _transparent;
+	private bool _upgraded;
 
 	private void Start()
 	{
@@ -57,7 +62,13 @@ public class PlayerBehavior : MonoBehaviour
 		}
 
 	}
-	
+
+	private void OnSceneGUI()
+	{
+		Handles.color = Color.blue;
+		Handles.DrawWireCube(new Vector3(ShootingPosition.x, ShootingPosition.y, 0), Vector3.one);
+	}
+
 	public void ReceiveDamage()
 	{
 		if (!_invulnerable)
@@ -68,8 +79,6 @@ public class PlayerBehavior : MonoBehaviour
 		}
 	}
 
-	private float _blinkHoldback;
-	private bool _transparent;
 	private void Blink()
 	{
 		if (_blinkHoldback > 0f)
@@ -104,20 +113,30 @@ public class PlayerBehavior : MonoBehaviour
 			Health += 1;
 	}
 
-	private void Shoot()
+	public void Shoot()
 	{
-		var bullet = Instantiate(BulletPrefab, Camera.main.transform);
-		bullet.transform.position = transform.position;
-		bullet.GetComponent<Rigidbody2D>().AddForce(transform.rotation * -Vector2.up * BulletSpeed, ForceMode2D.Impulse);
+        var bullet = Instantiate(BulletPrefab, Camera.main.transform);
+        bullet.transform.position = transform.position;
+        bullet.GetComponent<Rigidbody2D>().AddForce(transform.rotation * -Vector2.up * BulletSpeed, ForceMode2D.Impulse);
+		if (_upgraded)
+		{
+            bullet = Instantiate(BulletPrefab, Camera.main.transform);
+            bullet.transform.position = transform.position;
+            bullet.GetComponent<Rigidbody2D>().AddForce(transform.rotation * (-Vector2.up + Vector2.right)/2 * BulletSpeed, ForceMode2D.Impulse);
+			
+            bullet = Instantiate(BulletPrefab, Camera.main.transform);
+            bullet.transform.position = transform.position;
+            bullet.GetComponent<Rigidbody2D>().AddForce(transform.rotation * (-Vector2.up + Vector2.left)/2 * BulletSpeed, ForceMode2D.Impulse);
+		}
 	}
 
 	public void UpgradeBullets()
 	{
-		
+		_upgraded = true;
 	}
 
 	public void DowngradeBullets()
 	{
-		
+		_upgraded = false;
 	}
 }
