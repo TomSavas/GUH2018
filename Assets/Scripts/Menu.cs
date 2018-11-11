@@ -11,6 +11,7 @@ public class Menu : MonoBehaviour
 	public CameraFollower CameraMovement;
 	public ScoringSystem Scoring;
 	public GameObject Health;
+	public BackgroundGenerator BackgroundGenerator;
 
 	public GameObject Title;
 	public GameObject PlayButton;
@@ -28,6 +29,7 @@ public class Menu : MonoBehaviour
 		PickupSpawner.Enabled = true;
 		CameraMovement.enabled = true;
 		Scoring.Playing = true;
+		BackgroundGenerator.Enabled = true;
 		Scoring.ResetScore();
 		
 		//Hide menu UI
