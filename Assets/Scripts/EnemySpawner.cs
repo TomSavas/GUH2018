@@ -47,14 +47,6 @@ public class EnemySpawner : MonoBehaviour
 
     private float GenerateYCoord()
     {
-        var aboveScreen = Random.Range(0, 1) == 0;
-        if (aboveScreen)
-        {
-            return Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
-        }
-        else
-        {
-            return Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
-        }
+        return Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
     }
 }
