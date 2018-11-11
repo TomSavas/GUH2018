@@ -6,8 +6,8 @@ public class Menu : MonoBehaviour
 {
 	public GameObject Player;
 	public GameObject Score;
-	public GameObject EnemySpawner;
-	public GameObject PickupSpawner;
+	public EnemySpawner EnemySpawner;
+	public SpawnPickUps PickupSpawner;
 	public CameraFollower CameraMovement;
 	public ScoringSystem Scoring;
 
@@ -22,8 +22,8 @@ public class Menu : MonoBehaviour
 		_isInGame = true;
 		Player.SetActive(true);
 		Score.SetActive(true);
-		//EnemySpawner.SetActive(true);
-		//PickupSpawner.SetActive(true);
+		EnemySpawner.Enabled = true;
+		PickupSpawner.Enabled = true;
 		CameraMovement.enabled = true;
 		Scoring.Playing = true;
 		Scoring.ResetScore();
