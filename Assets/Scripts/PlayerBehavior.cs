@@ -7,10 +7,15 @@ public class PlayerBehavior : MonoBehaviour
 	public int Health;
 	public float InvulnerabilityTime;
 	public float BlinkHoldback;
-
+	public GameObject BulletPrefab;
+	public float BulletSpeed;
+	public float FiringCooldownTime;
+	
 	private bool _invulnerable;
 	private float _invulnerabilityTime;
 	private SpriteRenderer _spriteRenderer;
+	private bool _onCooldown;
+	private float _cooldownTime;
 
 	private void Start()
 	{
@@ -34,6 +39,23 @@ public class PlayerBehavior : MonoBehaviour
 				_transparent = false;
 			}
 		}
+
+		if (!_onCooldown)
+		{
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Shoot();
+                _onCooldown = true;
+	            _cooldownTime = FiringCooldownTime;
+            }
+		}
+		else
+		{
+			_cooldownTime -= Time.deltaTime;
+			if (_cooldownTime < 0)
+				_onCooldown = false;
+		}
+
 	}
 	
 	public void ReceiveDamage()
@@ -84,7 +106,9 @@ public class PlayerBehavior : MonoBehaviour
 
 	private void Shoot()
 	{
-		
+		var bullet = Instantiate(BulletPrefab, Camera.main.transform);
+		bullet.transform.position = transform.position;
+		bullet.GetComponent<Rigidbody2D>().AddForce(transform.rotation * -Vector2.up * BulletSpeed, ForceMode2D.Impulse);
 	}
 
 	public void UpgradeBullets()
