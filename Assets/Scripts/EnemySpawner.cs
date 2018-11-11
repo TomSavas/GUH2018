@@ -30,8 +30,8 @@ public class EnemySpawner : MonoBehaviour
         {
             _enemySpawned = true;
             GameObject randomEnemy = EnemyPrefabs[Random.Range(0, EnemyPrefabs.Count-1)];
-            randomEnemy.transform.position = GenerateCoord();
-            Instantiate(randomEnemy, randomEnemy.transform, true);
+            randomEnemy = Instantiate(randomEnemy, GenerateCoord(), Quaternion.identity);
+            //randomEnemy.transform.parent = Camera.main.gameObject.transform;
         }
     }
 
@@ -49,7 +49,12 @@ public class EnemySpawner : MonoBehaviour
     {
         var aboveScreen = Random.Range(0, 1) == 0;
         if (aboveScreen)
+        {
             return Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
-        return Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
+        }
+        else
+        {
+            return Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
+        }
     }
 }
