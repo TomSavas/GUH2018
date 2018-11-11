@@ -12,6 +12,9 @@ public class PlayerBehavior : MonoBehaviour
 	public float BulletSpeed;
 	public float FiringCooldownTime;
 	public Vector2 ShootingPosition;
+	public GameObject HealthDisplay1;
+	public GameObject HealthDisplay2;
+	public GameObject HealthDisplay3;
 	
 	private bool _invulnerable;
 	private float _invulnerabilityTime;
@@ -47,7 +50,7 @@ public class PlayerBehavior : MonoBehaviour
 
 		if (!_onCooldown)
 		{
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 Shoot();
                 _onCooldown = true;
@@ -73,9 +76,11 @@ public class PlayerBehavior : MonoBehaviour
 	{
 		if (!_invulnerable)
 		{
-			Health -= 1;
+			DecrementHealth();
 			_invulnerable = true;
 			_invulnerabilityTime = InvulnerabilityTime;
+			if(Health == 0)
+				Application.LoadLevel(Application.loadedLevel);
 		}
 	}
 
@@ -105,12 +110,34 @@ public class PlayerBehavior : MonoBehaviour
 	{
 		if (Health > 0)
 			Health -= 1;
+		UpdateHealthDisplay();
 	}
 
 	public void IncrementHealth()
 	{
 		if (Health < 3)
 			Health += 1;
+		UpdateHealthDisplay();
+	}
+
+	public void UpdateHealthDisplay()
+	{
+        HealthDisplay1.SetActive(true);
+        HealthDisplay2.SetActive(true);
+        HealthDisplay3.SetActive(true);
+		if (Health == 2)
+		{
+			HealthDisplay3.SetActive(false);
+		} else if (Health == 1)
+		{
+			HealthDisplay3.SetActive(false);
+			HealthDisplay2.SetActive(false);
+		} else if (Health == 0)
+		{
+			HealthDisplay3.SetActive(false);
+			HealthDisplay2.SetActive(false);
+			HealthDisplay1.SetActive(false);
+		}
 	}
 
 	public void Shoot()
@@ -138,5 +165,11 @@ public class PlayerBehavior : MonoBehaviour
 	public void DowngradeBullets()
 	{
 		_upgraded = false;
+	}
+
+	private void OnCollisionEnter2D(Collision2D other)
+	{
+		if(other.gameObject.tag == "Enemy")
+			ReceiveDamage();
 	}
 }
