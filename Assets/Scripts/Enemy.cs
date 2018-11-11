@@ -4,7 +4,7 @@ public class Enemy : MonoBehaviour
 {
 	public int ShotsPerMinute;
 	public GameObject BulletPrefab;
-	public float Speed;
+	public float BulletSpeed;
 
 	private float _shootingPeriod;
 	private float _lastShotTime;
@@ -27,6 +27,6 @@ public class Enemy : MonoBehaviour
 	{
 		var bullet = Instantiate(BulletPrefab, Camera.main.transform);
 		bullet.transform.position = transform.position;
-		bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * Speed, ForceMode2D.Impulse);
+		bullet.GetComponent<Rigidbody2D>().AddForce(Vector2.up * BulletSpeed, ForceMode2D.Impulse);
 	}
 }
