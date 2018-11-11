@@ -9,8 +9,8 @@ public class GravityTouchpoint : BasicTouchpoint
     public override void ActOnPlayer(GameObject player, Vector2 touchpointToPlayer)
     {
         touchpointToPlayer *= -1;
-        if(touchpointToPlayer.magnitude <= MaxRange && touchpointToPlayer.magnitude >= MinRange)
-            player.GetComponent<Rigidbody2D>().AddForce(GravitationalConst / (touchpointToPlayer.magnitude + 0.1f) * touchpointToPlayer.normalized, ForceMode2D.Force);
+        if (touchpointToPlayer.magnitude <= MaxRange && touchpointToPlayer.magnitude >= MinRange)
+            player.GetComponent<Rigidbody2D>().AddForce(GravitationalConst / (touchpointToPlayer.magnitude + 0.2f) * touchpointToPlayer.normalized, ForceMode2D.Force);
     }
 
     public override void ActOnEnemy(GameObject enemy, Vector2 touchpointToEnemy) {}
