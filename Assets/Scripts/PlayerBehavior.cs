@@ -69,4 +69,31 @@ public class PlayerBehavior : MonoBehaviour
 			_blinkHoldback = BlinkHoldback;
 		}
 	}
+
+	public void DecrementHealth()
+	{
+		if (Health > 0)
+			Health -= 1;
+	}
+
+	public void IncrementHealth()
+	{
+		if (Health < 3)
+			Health += 1;
+	}
+
+	private void Shoot()
+	{
+		
+	}
+
+	public void UpgradeBullets()
+	{
+		
+	}
+
+	public void DowngradeBullets()
+	{
+		
+	}
 }
