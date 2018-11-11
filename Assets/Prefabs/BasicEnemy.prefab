@@ -24,9 +24,10 @@ GameObject:
   - component: {fileID: 61987417317056730}
   - component: {fileID: 114863079591857978}
   - component: {fileID: 50222260537019496}
+  - component: {fileID: 61468991266088212}
   m_Layer: 0
   m_Name: BasicEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,6 +65,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!61 &61468991266088212
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1261732726397542}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.002200961, y: -0.001100421}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.28918666, y: 0.17253613}
+  m_EdgeRadius: 0
 --- !u!61 &61987417317056730
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -115,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a23d8fdb497481da2140dbeafdc712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1817161895780148, guid: 2bf57d176714f4e6f9747015014b670a, type: 2}
   speed: 2
 --- !u!212 &212270783674259518
 SpriteRenderer:
