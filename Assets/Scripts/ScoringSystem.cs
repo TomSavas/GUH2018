@@ -14,7 +14,7 @@ public class ScoringSystem : MonoBehaviour
 	{
 		if (Playing)
 		{
-			Score += GetScoreIncrement();
+			Increment();
 			_highScore = Mathf.Max(Score, _highScore);
 		}
 	}
@@ -24,6 +24,17 @@ public class ScoringSystem : MonoBehaviour
 		return 1f;
 	}
 
+	public void Increment()
+	{
+			Score += GetScoreIncrement();
+	}
+
+	public void BigIncrement()
+	{
+		for(int i = 0; i < 10; i++)
+			Increment();
+	}
+	
 	public void ResetScore()
 	{
 		Score = 0;
