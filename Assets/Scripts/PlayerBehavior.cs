@@ -143,16 +143,16 @@ public class PlayerBehavior : MonoBehaviour
 	public void Shoot()
 	{
         var bullet = Instantiate(BulletPrefab, Camera.main.transform);
-        bullet.transform.position = transform.position;
+        bullet.transform.position = transform.position + transform.rotation * Vector2.up * -0.8f;
         bullet.GetComponent<Rigidbody2D>().AddForce(transform.rotation * -Vector2.up * BulletSpeed, ForceMode2D.Impulse);
 		if (_upgraded)
 		{
             bullet = Instantiate(BulletPrefab, Camera.main.transform);
-            bullet.transform.position = transform.position;
+            bullet.transform.position = transform.position + transform.rotation * Vector2.up * -0.8f;
             bullet.GetComponent<Rigidbody2D>().AddForce(transform.rotation * (-Vector2.up + Vector2.right)/2 * BulletSpeed, ForceMode2D.Impulse);
 			
             bullet = Instantiate(BulletPrefab, Camera.main.transform);
-            bullet.transform.position = transform.position;
+            bullet.transform.position = transform.position + transform.rotation * Vector2.up * -0.8f;
             bullet.GetComponent<Rigidbody2D>().AddForce(transform.rotation * (-Vector2.up + Vector2.left)/2 * BulletSpeed, ForceMode2D.Impulse);
 		}
 	}
