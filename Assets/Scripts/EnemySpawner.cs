@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
         if (EnemyPrefabs.Count != 0)
         {
             _enemySpawned = true;
-            GameObject randomEnemy = EnemyPrefabs[Random.Range(0, EnemyPrefabs.Count-1)];
+            GameObject randomEnemy = EnemyPrefabs[Random.Range(0, EnemyPrefabs.Count)];
             randomEnemy = Instantiate(randomEnemy, GenerateCoord(), Quaternion.identity);
             //randomEnemy.transform.parent = Camera.main.gameObject.transform;
         }

@@ -19,7 +19,7 @@ public class SpawnPickUps : MonoBehaviour {
             int time = (Mathf.RoundToInt(Time.time)) % (60/SpawnsPerMinute);
 			
             if (!spawnedYet) {
-                int randomedTime = Random.Range (1, 60/SpawnsPerMinute - 1);
+                int randomedTime = Random.Range (1, 60/SpawnsPerMinute);
                 if (time >= randomedTime) {
                     Instantiate (GetPickup(), GenerateNewPosition(), Quaternion.identity);
                     spawnedYet = true;
@@ -34,7 +34,7 @@ public class SpawnPickUps : MonoBehaviour {
 	
 	private GameObject GetPickup()
 	{
-		return Pickups[Random.Range(0, Pickups.Count - 1)];
+		return Pickups[Random.Range(0, Pickups.Count)];
 	}
 	
 	private Vector3 GenerateNewPosition(){
