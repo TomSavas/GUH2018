@@ -6,14 +6,18 @@ using UnityEngine;
 public class PickUpScript : MonoBehaviour {
 	public float speedX;
 	public float speedY;
-	public GameObject camera;
 
-	void Start(){
+	private GameObject _camera;
+
+	void Start()
+	{
+		_camera = Camera.main.gameObject;
+		
 		int rotation = Random.Range (0, 359);
-		speedX = camera.GetComponent<CameraFollower> ().speed
+		speedX = _camera.GetComponent<CameraFollower> ().speed
 			* Mathf.Sin (Mathf.Deg2Rad * rotation);
-		speedY = speedY = camera.GetComponent<CameraFollower> ().speed 
-			+ camera.GetComponent<CameraFollower> ().speed
+		speedY = speedY = _camera.GetComponent<CameraFollower> ().speed 
+			+ _camera.GetComponent<CameraFollower> ().speed
 			* Mathf.Cos (Mathf.Deg2Rad * rotation);
 	}
 
@@ -23,17 +27,21 @@ public class PickUpScript : MonoBehaviour {
 			speedY * Time.deltaTime,
 			0);
 	}
-	void OnTriggerEnter2D(Collider2D col){
+	
+	void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.CompareTag ("Player")) {
-			Debug.Log ("Player");
-		}else if (col.gameObject.CompareTag("Border")){
+			DoPickupAction(col.gameObject);
+			Destroy(gameObject);
+		} else if (col.gameObject.CompareTag("Border")){
 			if (col.gameObject.name.Equals ("Top_Border")) {
-				speedY = camera.GetComponent<CameraFollower> ().speed * 2 - speedY;
+				speedY = _camera.GetComponent<CameraFollower> ().speed * 2 - speedY;
 			} else if (col.gameObject.name.Equals ("Bottom_Border")) {
-				speedY = camera.GetComponent<CameraFollower> ().speed * 2 - speedY;
+				speedY = _camera.GetComponent<CameraFollower> ().speed * 2 - speedY;
 			} else {
 				speedX = -speedX;
 			}
 		}
 	}
+
+	protected virtual void DoPickupAction(GameObject player) {}
 }
