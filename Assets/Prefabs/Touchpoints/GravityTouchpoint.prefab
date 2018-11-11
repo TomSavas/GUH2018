@@ -52,6 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lifetime: 1
-  MaxRange: 2
-  MinRange: 0.25
+  MaxRange: 100
+  MinRange: 0
   GravitationalConst: 10

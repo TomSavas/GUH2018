@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1449823333224094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5871625, y: 1.2203151, z: -10.1328125}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,8 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c1bb829f6e049d480dfcf1c37880cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefabs: []
-  SpawnsPerMinute: 0
+  EnemyPrefabs:
+  - {fileID: 1261732726397542, guid: 48a0a5b410ae843bca0b41bd1d8b933d, type: 2}
+  SpawnsPerMinute: 12
   Enabled: 0
 --- !u!114 &114898644278130302
 MonoBehaviour:
@@ -66,7 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f3796a08ea44415b1c905393f09c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnsPerMinute: 0
-  pickUp: {fileID: 0}
-  camera: {fileID: 0}
+  SpawnsPerMinute: 0
+  Pickups: []
   Enabled: 0
