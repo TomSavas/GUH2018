@@ -54,4 +54,4 @@ MonoBehaviour:
   Lifetime: 1
   MaxRange: 100
   MinRange: 0
-  GravitationalConst: 10
+  GravitationalConst: 20

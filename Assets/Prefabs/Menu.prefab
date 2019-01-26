@@ -244,6 +244,8 @@ MonoBehaviour:
   PickupSpawner: {fileID: 0}
   CameraMovement: {fileID: 0}
   Scoring: {fileID: 0}
+  Health: {fileID: 0}
+  BackgroundGenerator: {fileID: 0}
   Title: {fileID: 1307777318154850}
   PlayButton: {fileID: 1431007726391894}
   ExitButton: {fileID: 1530509184878708}
